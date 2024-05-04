@@ -6,8 +6,7 @@ const port = 3001; // Ensure this port does not conflict with other services
 
 app.use(express.json());
 
-app.post('/run-command', (req, res) => {
-    const { command } = req.body;
+app.get('/all-hosts', (req, res) => {
     exec("sudo arp-scan --localnet", (error, stdout, stderr) => {
         if (error) {
             console.error(`exec error: ${error}`);
