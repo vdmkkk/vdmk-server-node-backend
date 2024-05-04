@@ -5,6 +5,10 @@ const app = express();
 const port = 3001; // Ensure this port does not conflict with other services
 
 app.use(express.json());
+app.use(cors({
+    origin: '*',
+    credentials: true
+}))
 
 app.get('/all-hosts', (req, res) => {
     exec("sudo arp-scan --localnet", (error, stdout, stderr) => {

@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/vdmkkk/vdmk-server-node-backend#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.19.2",
     "nodemon": "^3.1.0"
   }
