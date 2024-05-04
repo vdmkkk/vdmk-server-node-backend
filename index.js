@@ -1,5 +1,6 @@
 const express = require('express');
 const { exec } = require('child_process');
+const cors = require('cors');
 
 const app = express();
 const port = 3001; // Ensure this port does not conflict with other services
