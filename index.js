@@ -28,6 +28,21 @@ app.get("/all-hosts", (req, res) => {
   });
 });
 
+app.get("/get-stats", async (req, res) => {
+  try {
+    const cpu = await db.query("SELECT * FROM cpu");
+    const ram = await db.query("SELECT * FROM ram");
+    const network = await db.query("SELECT * FROM network");
+    res.json({
+      cpu: cpu,
+      ram: ram,
+      network: network,
+    });
+  } catch (e) {
+    res.json({ error: e });
+  }
+});
+
 const getStats = () => {
   try {
     exec("./system_monitor.sh", async (error, stdout, stderr) => {
