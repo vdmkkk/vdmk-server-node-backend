@@ -55,7 +55,7 @@ app.get("/stats", (req, res) => {
       rams.push(el);
     });
     let net = lines[2].slice(0, lines[2].indexOf("Mi"));
-    const unixTimestamp = Math.floor(new Date.now() / 1000);
+    const unixTimestamp = Math.floor(Date.now() / 1000);
     console.log(cpu1, cpu2);
     console.log(rams);
     console.log(net);
