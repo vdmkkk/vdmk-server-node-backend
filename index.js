@@ -38,18 +38,24 @@ app.get("/stats", (req, res) => {
       return res.status(500).send({ error: `stderr: ${stderr}` });
     }
     let lines = stdout.split("\n");
-    let [cpu1, cpu2] = [lines[0].split(" ")[3], lines[0].split(" ")[5]];
+    let [cpu1, cpu2] = [
+      lines[0].split(" ").filter((el) => el != "")[3],
+      lines[0].split(" ").filter((el) => el != "")[5],
+    ];
     let [ram1, ram2] = [lines[1].split("/")[0], lines[1].split("/")[1]];
+    rams = [];
     [ram1, ram2].forEach((el) => {
+      var el;
       if (el.includes("Gi")) {
         el = parseInt(el.slice(0, el.indexOf("Gi"))) * 1024;
       } else {
         el = parseInt(el.slice(0, el.indexOf("Mi")));
       }
+      rams.push(el);
     });
-    let net = lines[2].slice(0, lines[2].indexOf("Mib"));
+    let net = lines[2].slice(0, lines[2].indexOf("Mi"));
     console.log(lines[0].split(" "));
-    console.log(ram1, ram2);
+    console.log(rams);
     console.log(net);
     // res.send({ result: `${cpu1} ${cpu2} ${ram1} ${ram2} ${net}` });
   });
