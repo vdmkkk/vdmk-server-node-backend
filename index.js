@@ -34,9 +34,9 @@ app.get("/get-stats", async (req, res) => {
     const ram = await db.query("SELECT * FROM ram");
     const network = await db.query("SELECT * FROM network");
     res.json({
-      cpu: cpu,
-      ram: ram,
-      network: network,
+      cpu: cpu.rows,
+      ram: ram.rows,
+      network: network.rows,
     });
   } catch (e) {
     res.json({ error: e });
