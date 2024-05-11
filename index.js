@@ -47,6 +47,7 @@ app.get("/stats", (req, res) => {
     [ram1, ram2].forEach((el) => {
       var el;
       if (el.includes("Gi")) {
+        console.log(el.indexOf("Gi"), parseInt(el.slice(0, el.indexOf("Gi"))));
         el = parseInt(el.slice(0, el.indexOf("Gi"))) * 1024;
       } else {
         el = parseInt(el.slice(0, el.indexOf("Mi")));
@@ -54,7 +55,7 @@ app.get("/stats", (req, res) => {
       rams.push(el);
     });
     let net = lines[2].slice(0, lines[2].indexOf("Mi"));
-    console.log(lines[0].split(" "));
+    console.log(cpu1, cpu2);
     console.log(rams);
     console.log(net);
     // res.send({ result: `${cpu1} ${cpu2} ${ram1} ${ram2} ${net}` });
