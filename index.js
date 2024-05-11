@@ -48,7 +48,7 @@ app.get("/stats", (req, res) => {
       var el;
       if (el.includes("Gi")) {
         console.log(el.indexOf("Gi"), parseInt(el.slice(0, el.indexOf("Gi"))));
-        el = parseInt(el.slice(0, el.indexOf("Gi"))) * 1024;
+        el = parseFloat(el.slice(0, el.indexOf("Gi"))) * 1024;
       } else {
         el = parseInt(el.slice(0, el.indexOf("Mi")));
       }
