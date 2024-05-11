@@ -58,7 +58,7 @@ app.get("/stats", (req, res) => {
     console.log(cpu1, cpu2);
     console.log(rams);
     console.log(net);
-    // res.send({ result: `${cpu1} ${cpu2} ${ram1} ${ram2} ${net}` });
+    res.send({ result: `OK` });
   });
 });
 
