@@ -55,12 +55,24 @@ app.get("/stats", (req, res) => {
       rams.push(el);
     });
     let net = lines[2].slice(0, lines[2].indexOf("Mi"));
+    const unixTimestamp = Math.floor(new Date.now() / 1000);
     console.log(cpu1, cpu2);
     console.log(rams);
     console.log(net);
 
-    const dbRes = await db.query("SELECT * FROM cpu");
-    console.log(dbRes.rows);
+    await db.query(
+      `INSERT INTO cpu (usr, sys, timestamp) values ($1, $2, $3) RETURNING *`,
+      [cpu1, cpu2, unixTimestamp]
+    );
+    await db.query(
+      `INSERT INTO ram (used, max, timestamp) values ($1, $2, $3) RETURNING *`,
+      [ram1, ram2, unixTimestamp]
+    );
+    await db.query(
+      `INSERT INTO network (used, timestamp) values ($1, $2) RETURNING *`,
+      [net, unixTimestamp]
+    );
+    // console.log(dbRes.rows);
     res.send({ result: `OK` });
   });
 });
