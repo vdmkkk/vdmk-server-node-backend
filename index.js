@@ -29,7 +29,7 @@ app.get("/all-hosts", (req, res) => {
 });
 
 app.get("/stats", (req, res) => {
-  exec("./system_monitor.sh", (error, stdout, stderr) => {
+  exec("./system_monitor.sh", async (error, stdout, stderr) => {
     if (error) {
       console.error(`exec error: ${error}`);
       return res.status(500).send({ error: `exec error: ${error.message}` });
@@ -59,7 +59,7 @@ app.get("/stats", (req, res) => {
     console.log(rams);
     console.log(net);
 
-    const dbRes = db.query("SELECT * FROM cpu");
+    const dbRes = await db.query("SELECT * FROM cpu");
     console.log(dbRes.rows);
     res.send({ result: `OK` });
   });
