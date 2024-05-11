@@ -48,7 +48,10 @@ app.get("/stats", (req, res) => {
       }
     });
     let net = lines[2].slice(0, lines[2].indexOf("Mib"));
-    res.send({ result: `${cpu1} ${cpu2} ${ram1} ${ram2} ${net}` });
+    console.log(lines[0].split(" "));
+    console.log(ram1, ram2);
+    console.log(net);
+    // res.send({ result: `${cpu1} ${cpu2} ${ram1} ${ram2} ${net}` });
   });
 });
 
