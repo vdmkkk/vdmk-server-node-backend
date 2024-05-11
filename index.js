@@ -66,7 +66,7 @@ app.get("/stats", (req, res) => {
     );
     await db.query(
       `INSERT INTO ram (used, max, timestamp) values ($1, $2, $3) RETURNING *`,
-      [ram1, ram2, unixTimestamp]
+      [rams[0], rams[1], unixTimestamp]
     );
     await db.query(
       `INSERT INTO network (used, timestamp) values ($1, $2) RETURNING *`,
